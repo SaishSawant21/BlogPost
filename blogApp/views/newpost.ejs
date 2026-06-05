@@ -1,0 +1,37 @@
+<%- include('partials/header.ejs') %>
+<% const post = currentData %>
+<div class="px-4 py-5 my-1 text-center">
+
+    <h1 class="display-5 fw-medium fs-4">
+      <%= edit ? 'Edit Post' : 'Write a New Post' %>
+    </h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="mb-2 fs-6 text-muted">Share your ideas with the world</p>
+    </div>
+  </div>
+ <form class="mx-auto mt-4" method="post" action="<%= edit ? '/update-post/' + post.id : '/save-blog' %>"
+  style="max-width:95%;">
+  <div class="mb-3">
+    <label for="title" class="form-label fw-500">Title</label>
+    <input type="text" required class="form-control" id="title" name="title" placeholder="e.g. My First Blog Post"
+      value="<%= edit ? post.title : '' %>">
+  </div>
+  <div class="mb-3">
+    <label for="author" class="form-label">Author</label>
+    <input type="text" required class="form-control" name="author" id="author" placeholder="e.g. Your name"
+      value="<%= edit ? post.author : '' %>">
+  </div>
+  <div class="mb-3">
+    <label for="content" class="form-label">Content</label>
+    <textarea required class="form-control" name="content" id="content" rows="6" 
+      placeholder="Write your post here..."><%= edit ? post.content : '' %></textarea>
+  </div>
+  <div class="d-flex align-items-center gap-3">
+    <button type="submit" class="btn btn-dark">
+      <%= edit ? 'Update' : 'Publish' %> Post
+    </button>
+    <a href="/" class="text-muted text-decoration-none cancel-link">or cancel</a>
+  </div>
+</form>
+
+  <%- include('partials/footer.ejs') %>
