@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
     res.render('index.ejs', { postsData: posts, path: '/' });
 })
 app.get('/newpost', (req, res) => {
-    res.render('newpost.ejs', { currentData: null,path: '/newpost', edit: false });
+    res.render('newpost.ejs', { currentData: null, path: '/newpost', edit: false });
 })
 app.get('/view-post/:id', (req, res) => {
     const singlePost = fetchData(req.params.id)
@@ -57,6 +57,15 @@ app.post('/delete-post/:id', (req, res) => {
     posts = posts.filter((item) => item.id !== parseInt(req.params.id));
     res.redirect('/')
 })
+
+app.get('/not-found', (req, res) => {
+    res.redirect('not-found.ejs');
+})
+
+app.use((req, res) => {
+    res.status(404).render('404.ejs', { path: '' });
+})
+
 app.listen(port, () => {
-    console.log('yeah')
+    console.log('...Runing')
 })
